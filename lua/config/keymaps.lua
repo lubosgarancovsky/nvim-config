@@ -40,21 +40,6 @@ vim.keymap.set("n", "]b", "<cmd>BufferLineCycleNext<cr>", {
 	desc = "Next buffer",
 })
 
-vim.keymap.set("n", "<leader>bp", "<cmd>BufferLineCyclePrev<cr>", {
-	desc = "Previous buffer",
-})
-
-vim.keymap.set("n", "<leader>bn", "<cmd>BufferLineCycleNext<cr>", {
-	desc = "Next buffer",
-})
-
-vim.keymap.set("n", "<leader>bd", "<cmd>bdelete<cr>", {
-	desc = "Delete buffer",
-})
-
-vim.keymap.set("n", "<leader>bo", "<cmd>BufferLineCloseOthers<cr>", {
-	desc = "Delete other buffers",
-})
 -- Diagnosticss
 vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, {
 	desc = "Line diagnostics",

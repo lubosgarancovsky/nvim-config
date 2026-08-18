@@ -1,4 +1,4 @@
-local cfg = require("config.config")
+local cfg = require("config.local")
 
 return {
 	-- Themes
@@ -106,7 +106,7 @@ return {
 
 		keys = {
 			{
-				"<leader>th",
+				"<leader>uh",
 				"<cmd>Themery<CR>",
 				desc = "Theme picker",
 			},
@@ -123,115 +123,115 @@ return {
 	},
 
 	-- Fuzzy finder
-	{
-		"nvim-telescope/telescope.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-
-		opts = {
-			pickers = {
-				find_files = {
-					hidden = true,
-				},
-			},
-
-			defaults = {
-				file_ignore_patterns = {
-					"node_modules/",
-					"%.git/",
-					"dist/",
-					"build/",
-					"%.next/",
-				},
-			},
-		},
-
-		config = function()
-			local telescope = require("telescope.builtin")
-
-			vim.keymap.set("n", "<leader>ff", telescope.find_files, {
-				desc = "Find files",
-			})
-
-			vim.keymap.set("n", "<leader>fg", telescope.live_grep, {
-				desc = "Live grep",
-			})
-
-			vim.keymap.set("n", "<leader>fb", telescope.buffers, {
-				desc = "Find buffers",
-			})
-
-			vim.keymap.set("n", "<leader>fh", telescope.help_tags, {
-				desc = "Find help",
-			})
-
-			vim.keymap.set("n", "<leader>fr", telescope.oldfiles, {
-				desc = "Find recent",
-			})
-
-			vim.keymap.set("n", "<leader>fs", telescope.lsp_document_symbols, {
-				desc = "Find symbols",
-			})
-
-			vim.keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>", {
-				desc = "Find TODOs",
-			})
-		end,
-	},
+	-- {
+	-- 	"nvim-telescope/telescope.nvim",
+	-- 	dependencies = {
+	-- 		"nvim-lua/plenary.nvim",
+	-- 	},
+	--
+	-- 	opts = {
+	-- 		pickers = {
+	-- 			find_files = {
+	-- 				hidden = true,
+	-- 			},
+	-- 		},
+	--
+	-- 		defaults = {
+	-- 			file_ignore_patterns = {
+	-- 				"node_modules/",
+	-- 				"%.git/",
+	-- 				"dist/",
+	-- 				"build/",
+	-- 				"%.next/",
+	-- 			},
+	-- 		},
+	-- 	},
+	--
+	-- 	config = function()
+	-- 		local telescope = require("telescope.builtin")
+	--
+	-- 		vim.keymap.set("n", "<leader>ff", telescope.find_files, {
+	-- 			desc = "Find files",
+	-- 		})
+	--
+	-- 		vim.keymap.set("n", "<leader>fg", telescope.live_grep, {
+	-- 			desc = "Live grep",
+	-- 		})
+	--
+	-- 		vim.keymap.set("n", "<leader>fb", telescope.buffers, {
+	-- 			desc = "Find buffers",
+	-- 		})
+	--
+	-- 		vim.keymap.set("n", "<leader>fh", telescope.help_tags, {
+	-- 			desc = "Find help",
+	-- 		})
+	--
+	-- 		vim.keymap.set("n", "<leader>fr", telescope.oldfiles, {
+	-- 			desc = "Find recent",
+	-- 		})
+	--
+	-- 		vim.keymap.set("n", "<leader>fs", telescope.lsp_document_symbols, {
+	-- 			desc = "Find symbols",
+	-- 		})
+	--
+	-- 		vim.keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>", {
+	-- 			desc = "Find TODOs",
+	-- 		})
+	-- 	end,
+	-- },
 
 	-- Folders tree
-	{
-		"nvim-neo-tree/neo-tree.nvim",
-		branch = "v3.x",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"MunifTanjim/nui.nvim",
-		},
-
-		keys = {
-			{
-				"<leader>e",
-				"<cmd>Neotree toggle<cr>",
-				desc = "File explorer",
-			},
-		},
-
-		opts = {
-			window = {
-				width = 45,
-				position = "right",
-			},
-			filesystem = {
-				filtered_items = {
-					visible = true,
-					hide_dotfiles = false,
-					hide_gitignored = false,
-					hide_by_name = {
-						"node_modules",
-						".next",
-						".git",
-					},
-				},
-			},
-			close_if_last_window = true,
-			default_component_configs = {
-				container = { enable_character_fade = true },
-				indent = {
-					indent_size = 2,
-					padding = 1,
-					with_markers = true,
-					indent_marker = "│",
-					last_indent_marker = "└",
-					highlight = "NeoTreeIndentMarker",
-				},
-				name = {
-					trailing_slash = false,
-					use_git_status_colors = true,
-				},
-			},
-		},
-	},
+	-- {
+	-- 	"nvim-neo-tree/neo-tree.nvim",
+	-- 	branch = "v3.x",
+	-- 	dependencies = {
+	-- 		"nvim-lua/plenary.nvim",
+	-- 		"MunifTanjim/nui.nvim",
+	-- 	},
+	--
+	-- 	keys = {
+	-- 		{
+	-- 			"<leader>e",
+	-- 			"<cmd>Neotree toggle<cr>",
+	-- 			desc = "File explorer",
+	-- 		},
+	-- 	},
+	--
+	-- 	opts = {
+	-- 		window = {
+	-- 			width = 45,
+	-- 			position = "right",
+	-- 		},
+	-- 		filesystem = {
+	-- 			filtered_items = {
+	-- 				visible = true,
+	-- 				hide_dotfiles = false,
+	-- 				hide_gitignored = false,
+	-- 				hide_by_name = {
+	-- 					"node_modules",
+	-- 					".next",
+	-- 					".git",
+	-- 				},
+	-- 			},
+	-- 		},
+	-- 		close_if_last_window = true,
+	-- 		default_component_configs = {
+	-- 			container = { enable_character_fade = true },
+	-- 			indent = {
+	-- 				indent_size = 2,
+	-- 				padding = 1,
+	-- 				with_markers = true,
+	-- 				indent_marker = "│",
+	-- 				last_indent_marker = "└",
+	-- 				highlight = "NeoTreeIndentMarker",
+	-- 			},
+	-- 			name = {
+	-- 				trailing_slash = false,
+	-- 				use_git_status_colors = true,
+	-- 			},
+	-- 		},
+	-- 	},
+	-- },
 
 	-- Keymaps
 	{
@@ -286,11 +286,19 @@ return {
 				},
 				{
 					"<leader>d",
-					group = "Debug",
+					group = "Database",
 				},
 				{
 					"<leader>a",
 					group = "AI",
+				},
+				{
+					"<leader>u",
+					group = "UI",
+				},
+				{
+					"<leader>t",
+					group = "Task",
 				},
 			},
 		},
@@ -348,65 +356,65 @@ return {
 	},
 
 	-- Notifications
-	{
-		"folke/noice.nvim",
-
-		event = "VeryLazy",
-
-		dependencies = {
-			"MunifTanjim/nui.nvim",
-			"rcarriga/nvim-notify",
-		},
-
-		opts = {
-			messages = {
-				enabled = true,
-			},
-
-			notify = {
-				enabled = true,
-			},
-
-			lsp = {
-				progress = {
-					enabled = true,
-				},
-
-				override = {
-					["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-					["vim.lsp.util.stylize_markdown"] = true,
-					["cmp.entry.get_documentation"] = true,
-				},
-			},
-
-			presets = {
-				bottom_search = true,
-				command_palette = true,
-				long_message_to_split = true,
-				inc_rename = false,
-				lsp_doc_border = true,
-			},
-
-			views = {
-				notify = {
-					backend = "notify",
-					fallback = "mini",
-				},
-			},
-		},
-	},
-
-	{
-		"rcarriga/nvim-notify",
-
-		opts = {
-			timeout = 3000,
-			stages = "fade_in_slide_out",
-			render = "default",
-			top_down = true,
-			background_colour = "Normal",
-		},
-	},
+	-- {
+	-- 	"folke/noice.nvim",
+	--
+	-- 	event = "VeryLazy",
+	--
+	-- 	dependencies = {
+	-- 		"MunifTanjim/nui.nvim",
+	-- 		"rcarriga/nvim-notify",
+	-- 	},
+	--
+	-- 	opts = {
+	-- 		messages = {
+	-- 			enabled = true,
+	-- 		},
+	--
+	-- 		notify = {
+	-- 			enabled = true,
+	-- 		},
+	--
+	-- 		lsp = {
+	-- 			progress = {
+	-- 				enabled = true,
+	-- 			},
+	--
+	-- 			override = {
+	-- 				["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+	-- 				["vim.lsp.util.stylize_markdown"] = true,
+	-- 				["cmp.entry.get_documentation"] = true,
+	-- 			},
+	-- 		},
+	--
+	-- 		presets = {
+	-- 			bottom_search = true,
+	-- 			command_palette = true,
+	-- 			long_message_to_split = true,
+	-- 			inc_rename = false,
+	-- 			lsp_doc_border = true,
+	-- 		},
+	--
+	-- 		views = {
+	-- 			notify = {
+	-- 				backend = "notify",
+	-- 				fallback = "mini",
+	-- 			},
+	-- 		},
+	-- 	},
+	-- },
+	--
+	-- {
+	-- 	"rcarriga/nvim-notify",
+	--
+	-- 	opts = {
+	-- 		timeout = 3000,
+	-- 		stages = "fade_in_slide_out",
+	-- 		render = "default",
+	-- 		top_down = true,
+	-- 		background_colour = "Normal",
+	-- 	},
+	-- },
 
 	-- Keeps current scope at the top of a screen
 	{
@@ -444,24 +452,24 @@ return {
 	},
 
 	-- Terminal
-	{
-		"akinsho/toggleterm.nvim",
-		version = "*",
-		opts = {
-			size = 20,
-			open_mapping = [[<c-\>]],
-			direction = "horizontal",
-			shade_terminals = false,
-		},
-
-		keys = {
-			{
-				"<leader>tt",
-				"<cmd>ToggleTerm<cr>",
-				desc = "Toggle terminal",
-			},
-		},
-	},
+	-- {
+	-- 	"akinsho/toggleterm.nvim",
+	-- 	version = "*",
+	-- 	opts = {
+	-- 		size = 20,
+	-- 		open_mapping = [[<c-\>]],
+	-- 		direction = "horizontal",
+	-- 		shade_terminals = false,
+	-- 	},
+	--
+	-- 	keys = {
+	-- 		{
+	-- 			"<leader>tt",
+	-- 			"<cmd>ToggleTerm<cr>",
+	-- 			desc = "Toggle terminal",
+	-- 		},
+	-- 	},
+	-- },
 
 	-- Markdown
 	{
@@ -648,19 +656,6 @@ return {
 					})
 				end,
 				desc = "Treesitter Incremental Selection",
-			},
-		},
-	},
-
-	-- Snacks
-	{
-		"folke/snacks.nvim",
-		opts = {
-			indent = {
-				enabled = true,
-			},
-			dashboard = {
-				enabled = true,
 			},
 		},
 	},
