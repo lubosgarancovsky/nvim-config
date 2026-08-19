@@ -100,24 +100,13 @@ return {
 		opts = {},
 	},
 
-	-- Surround
-	{
-		"kylechui/nvim-surround",
-		event = "VeryLazy",
-
-		opts = {},
-	},
-
 	-- to-do comments
 	{
 		"folke/todo-comments.nvim",
-
 		event = "VeryLazy",
-
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},
-
 		opts = {},
 	},
 
@@ -210,5 +199,35 @@ return {
 				desc = "Close folds with level",
 			})
 		end,
+	},
+
+	{
+		"catgoose/nvim-colorizer.lua",
+		opts = {
+			filetypes = {
+				"typescript",
+				"typescriptreact",
+				"javascript",
+				"javascriptreact",
+				"css",
+				"scss",
+				"html",
+			},
+			user_default_options = {
+				mode = "background",
+				RRGGBB = true,
+				RRGGBBAA = true,
+				names = false,
+				RGB = true,
+				css = true,
+			},
+		},
+		keys = {
+			{
+				"<leader>uc",
+				"<cmd>ColorizerToggle<cr>",
+				desc = "Toggle Colorizer",
+			},
+		},
 	},
 }

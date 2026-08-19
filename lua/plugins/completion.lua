@@ -1,3 +1,26 @@
+local cfg = require("config.settings").load()
+
+local default_sources = {
+	"lsp",
+	"path",
+	"snippets",
+	"buffer",
+}
+
+local providers = {}
+
+if cfg.ai.enabled then
+	table.insert(default_sources, "minuet")
+
+	providers.minuet = {
+		name = "minuet",
+		module = "minuet.blink",
+		async = true,
+		timeout_ms = 3000,
+		score_offset = 50,
+	}
+end
+
 return {
 	{
 		"saghen/blink.cmp",
@@ -23,26 +46,10 @@ return {
 			},
 
 			sources = {
-				default = {
-					"lsp",
-					"path",
-					"snippets",
-					"buffer",
-					"minuet",
-				},
-				providers = {
-					minuet = {
-						name = "minuet",
-						module = "minuet.blink",
-						async = true,
-						timeout_ms = 3000,
-						score_offset = 50,
-					},
-				},
+				default = default_sources,
+				providers = providers,
 			},
 
-			-- For rust fuzzy a build method must be added and cargo must be installed on the system
-			-- :h blink-cmp-installation
 			fuzzy = {
 				implementation = "lua",
 			},
@@ -52,6 +59,7 @@ return {
 	{
 		"L3MON4D3/LuaSnip",
 		version = "v2.*",
+
 		dependencies = {
 			"rafamadriz/friendly-snippets",
 		},

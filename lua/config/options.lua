@@ -151,3 +151,6 @@ vim.opt.timeoutlen = 400
 
 -- Allow mouse interaction in all Neovim modes
 vim.opt.mouse = "a"
+
+-- Add support for folder and file specific configuration
+vim.opt.exrc = true

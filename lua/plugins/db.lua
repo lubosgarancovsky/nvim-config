@@ -1,4 +1,4 @@
-local cfg = require("config.local")
+local cfg = require("config.settings").load()
 
 return {
 	{

@@ -1,6 +1,6 @@
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
--- Window
+-- Windows
 vim.keymap.set("n", "<leader>wv", "<cmd>vsplit<cr>", {
 	desc = "Split vertically",
 })
@@ -40,7 +40,7 @@ vim.keymap.set("n", "]b", "<cmd>BufferLineCycleNext<cr>", {
 	desc = "Next buffer",
 })
 
--- Diagnosticss
+-- Diagnostics
 vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, {
 	desc = "Line diagnostics",
 })

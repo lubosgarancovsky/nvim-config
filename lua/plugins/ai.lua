@@ -1,9 +1,9 @@
-local cfg = require("config.local")
+local cfg = require("config.settings").load()
 
 return {
 	{
 		"milanglacier/minuet-ai.nvim",
-		disabled = not cfg.ai.enabled,
+		enabled = cfg.ai.enabled,
 		config = function()
 			require("minuet").setup({
 				provider = "openai_fim_compatible",
@@ -40,7 +40,7 @@ return {
 
 	{
 		"olimorris/codecompanion.nvim",
-		disabled = not cfg.ai.enabled,
+		enabled = cfg.ai.enabled,
 		version = "^19.0.0",
 		dependencies = {
 			"nvim-lua/plenary.nvim",

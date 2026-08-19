@@ -23,7 +23,7 @@ return {
 		},
 		opts = {
 			ensure_installed = {
-				"typescript-language-server",
+				"vtsls",
 				"tailwindcss-language-server",
 				"eslint-lsp",
 				"eslint_d",
@@ -51,6 +51,7 @@ return {
 		dependencies = {
 			"mason-org/mason.nvim",
 			{ "mason-org/mason-lspconfig.nvim", config = function() end },
+			"yioneko/nvim-vtsls",
 		},
 
 		opts_extend = { "servers.*.keys" },
@@ -68,7 +69,7 @@ return {
 			},
 
 			inlay_hints = {
-				enabled = true,
+				enabled = false,
 			},
 
 			codelens = {
@@ -133,7 +134,7 @@ return {
 					},
 				},
 
-				ts_ls = {
+				vtsls = {
 					settings = {
 						javascript = {
 							implicitProjectConfig = {
@@ -142,14 +143,83 @@ return {
 						},
 						typescript = {
 							inlayHints = {
-								includeInlayParameterNameHints = "all",
-								includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-								includeInlayFunctionParameterTypeHints = true,
-								includeInlayVariableTypeHints = true,
-								includeInlayPropertyDeclarationTypeHints = true,
-								includeInlayFunctionLikeReturnTypeHints = true,
-								includeInlayEnumMemberValueHints = true,
+								parameterNames = { enabled = "all" },
+								parameterTypes = { enabled = true },
+								variableTypes = { enabled = true },
+								propertyDeclarationTypes = { enabled = true },
+								functionLikeReturnTypes = { enabled = true },
+								enumMemberValues = { enabled = true },
 							},
+						},
+						vtsls = {
+							enableMoveToFileCodeAction = true,
+							autoUseWorkspaceTsdk = true,
+							experimental = {
+								completion = {
+									enableServerSideFuzzyMatch = true,
+								},
+							},
+						},
+					},
+					keys = {
+						{
+							"<leader>co",
+							function()
+								vim.lsp.buf.code_action({
+									apply = true,
+									context = {
+										only = { "source.organizeImports" },
+										diagnostics = {},
+									},
+								})
+							end,
+							desc = "Organize Imports",
+						},
+						{
+							"<leader>cM",
+							function()
+								vim.lsp.buf.code_action({
+									apply = true,
+									context = {
+										only = { "source.addMissingImports.ts" },
+										diagnostics = {},
+									},
+								})
+							end,
+							desc = "Add missing imports",
+						},
+						{
+							"<leader>cu",
+							function()
+								vim.lsp.buf.code_action({
+									apply = true,
+									context = {
+										only = { "source.removeUnused.ts" },
+										diagnostics = {},
+									},
+								})
+							end,
+							desc = "Remove unused imports",
+						},
+						{
+							"<leader>cF",
+							function()
+								vim.lsp.buf.code_action({
+									apply = true,
+									context = {
+										only = { "source.fixAll.ts" },
+										diagnostics = {},
+									},
+								})
+							end,
+							desc = "Fix all diagnostics",
+						},
+						{
+							"<leader>cV",
+							function()
+								require("vtsls").commands.select_ts_version(0)
+							end,
+							desc = "Select TS version",
 						},
 					},
 				},
@@ -262,17 +332,31 @@ return {
 		config = function(_, opts)
 			vim.diagnostic.config(opts.diagnostics)
 
-			vim.lsp.enable({
-				"ts_ls",
-				"tailwindcss",
-				"cssls",
-				"jsonls",
-				"lua_ls",
-				"harper_ls",
-				"yamlls",
-				"gopls",
-				"clangd",
-				"pyright",
+			local handlers = {
+				function(server_name)
+					local server_opts = opts.servers[server_name] or {}
+					server_opts.capabilities = vim.tbl_deep_extend(
+						"force",
+						{},
+						opts.servers["*"].capabilities or {},
+						server_opts.capabilities or {}
+					)
+					require("lspconfig")[server_name].setup(server_opts)
+				end,
+				vtsls = function()
+					local server_opts = opts.servers.vtsls or {}
+					server_opts.capabilities = vim.tbl_deep_extend(
+						"force",
+						{},
+						opts.servers["*"].capabilities or {},
+						server_opts.capabilities or {}
+					)
+					require("vtsls").setup(server_opts)
+				end,
+			}
+
+			require("mason-lspconfig").setup({
+				handlers = handlers,
 			})
 
 			vim.api.nvim_create_autocmd("LspAttach", {
