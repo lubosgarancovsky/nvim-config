@@ -50,6 +50,18 @@ return {
 								width = 45,
 							},
 						},
+						exclude = {
+							".git",
+							"node_modules",
+							"dist",
+							"build",
+						},
+
+						include = {
+							".env",
+							".env.*",
+							"*local*",
+						},
 					},
 				},
 			},
