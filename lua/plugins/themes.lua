@@ -83,6 +83,18 @@ return {
 		},
 	},
 
+	{
+		"samharju/synthweave.nvim",
+		lazy = true,
+		config = function()
+			local synthweave = require("synthweave")
+			synthweave.setup({
+				transparent = cfg.ui.transparent,
+			})
+			synthweave.load()
+		end,
+	},
+
 	-- Theme picker
 	{
 		"zaldih/themery.nvim",
@@ -97,6 +109,7 @@ return {
 				"neonwave",
 				"rose-pine",
 				"cyberdream",
+				"synthweave",
 			},
 
 			livePreview = true,

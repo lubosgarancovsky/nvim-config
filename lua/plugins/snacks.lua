@@ -1,5 +1,17 @@
 local cfg = require("config.settings").load()
 
+local excluded = {
+	".git",
+	"node_modules",
+	"dist",
+	"build",
+	".yarn",
+	".vscode",
+	".idea",
+	"coverage",
+	".next",
+}
+
 return {
 	{
 		"folke/snacks.nvim",
@@ -52,18 +64,22 @@ return {
 								width = 45,
 							},
 						},
-						exclude = {
-							".git",
-							"node_modules",
-							"dist",
-							"build",
-						},
+						exclude = excluded,
 
 						include = {
 							".env",
 							".env.*",
 							"*local*",
 						},
+					},
+					files = {
+						hidden = true,
+						ignored = true,
+						exclude = excluded,
+					},
+
+					grep = {
+						exclude = excluded,
 					},
 				},
 			},
