@@ -322,6 +322,20 @@ return {
 				end,
 				desc = "Find Diagnostics",
 			},
+			{
+				"<leader>sw",
+				function()
+					Snacks.picker.grep_word()
+				end,
+				desc = "Search word under cursor",
+			},
+			{
+				"<leader>ss",
+				function()
+					Snacks.picker.lines()
+				end,
+				desc = "Search current buffer",
+			},
 
 			-- Terminal
 			{

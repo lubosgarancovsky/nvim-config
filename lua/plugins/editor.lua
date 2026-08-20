@@ -11,6 +11,9 @@ return {
 	-- Noice
 	{
 		"folke/noice.nvim",
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+		},
 		event = "VeryLazy",
 		opts = {
 			messages = {
@@ -231,27 +234,21 @@ return {
 
 		keys = {
 			{
-				"<leader>tl",
-				"<cmd>OverseerToggle<CR>",
-				desc = "Task list",
-			},
-
-			{
-				"<leader>tr",
+				"<leader>rr",
 				"<cmd>OverseerRun<CR>",
-				desc = "Run task",
+				desc = "Run Task",
 			},
 
 			{
-				"<leader>ta",
+				"<leader>rt",
+				"<cmd>OverseerToggle<CR>",
+				desc = "Task List",
+			},
+
+			{
+				"<leader>ra",
 				"<cmd>OverseerQuickAction<CR>",
-				desc = "Task action",
-			},
-
-			{
-				"<leader>ts",
-				"<cmd>OverseerTaskAction<CR>",
-				desc = "Task action",
+				desc = "Quick Action",
 			},
 		},
 	},

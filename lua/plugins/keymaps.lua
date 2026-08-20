@@ -63,7 +63,16 @@ return {
 				},
 				{
 					"<leader>t",
+					group = "Test",
+				},
+				{
+					"<leader>r",
 					group = "Task",
+					icon = "▶",
+				},
+				{
+					"<leader>s",
+					group = "Search",
 				},
 			},
 		},

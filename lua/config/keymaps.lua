@@ -60,11 +60,11 @@ vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move up" })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move right" })
 
 -- Buffers
-vim.keymap.set("n", "<Tab>", "<cmd>BufferLineCyclePrev<cr>", {
+vim.keymap.set("n", "<Tab>", "<cmd>BufferLineCycleNext<cr>", {
 	desc = "Previous buffer",
 })
 
-vim.keymap.set("n", "<S-Tab>", "<cmd>BufferLineCycleNext<cr>", {
+vim.keymap.set("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<cr>", {
 	desc = "Next buffer",
 })
 
