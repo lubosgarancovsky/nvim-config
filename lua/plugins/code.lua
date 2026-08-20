@@ -35,7 +35,7 @@ return {
 					lsp_fallback = true,
 				})
 			end, {
-				desc = "Format buffer",
+				desc = "Format",
 			})
 
 			-- Format before saving

@@ -196,13 +196,7 @@ return {
 			{
 				"<leader>cs",
 				"<cmd>AerialToggle!<CR>",
-				desc = "Code symbols",
-			},
-
-			{
-				"<leader>co",
-				"<cmd>AerialNavToggle<CR>",
-				desc = "Code symbols navigation",
+				desc = "Symbols",
 			},
 		},
 	},

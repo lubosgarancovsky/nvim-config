@@ -243,20 +243,6 @@ return {
 				end,
 				desc = "Open Repository",
 			},
-			-- {
-			-- 	"<leader>gp",
-			-- 	function()
-			-- 		Snacks.picker.gh_pr()
-			-- 	end,
-			-- 	desc = "GitHub Pull Requests (open)",
-			-- },
-			-- {
-			-- 	"<leader>gP",
-			-- 	function()
-			-- 		Snacks.picker.gh_pr({ state = "all" })
-			-- 	end,
-			-- 	desc = "GitHub Pull Requests (all)",
-			-- },
 
 			-- Picker
 			{
@@ -280,7 +266,6 @@ return {
 				end,
 				desc = "Find Buffers",
 			},
-
 			{
 				"<leader>fh",
 				function()
@@ -288,7 +273,6 @@ return {
 				end,
 				desc = "Find Help",
 			},
-
 			{
 				"<leader>fr",
 				function()
@@ -296,7 +280,6 @@ return {
 				end,
 				desc = "Find Recent",
 			},
-
 			{
 				"<leader>fs",
 				function()
@@ -304,7 +287,6 @@ return {
 				end,
 				desc = "Find LSP Symbols",
 			},
-
 			{
 				"<leader>ft",
 				function()
@@ -312,13 +294,33 @@ return {
 				end,
 				desc = "Find TODOs",
 			},
-
 			{
 				"<leader>fp",
 				function()
 					Snacks.picker.projects()
 				end,
 				desc = "Find Projects",
+			},
+			{
+				"<leader>fk",
+				function()
+					Snacks.picker.pick({ source = "keymaps" })
+				end,
+				desc = "Find Keymaps",
+			},
+			{
+				"<leader>fc",
+				function()
+					Snacks.picker.pick({ source = "commands" })
+				end,
+				desc = "Find Commands",
+			},
+			{
+				"<leader>fd",
+				function()
+					Snacks.picker.diagnostics()
+				end,
+				desc = "Find Diagnostics",
 			},
 
 			-- Terminal

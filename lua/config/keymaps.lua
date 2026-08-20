@@ -1,3 +1,15 @@
+-- Remove Neovim's default gr* LSP mappings
+for _, key in ipairs({
+	"grn",
+	"gra",
+	"grx",
+	"grr",
+	"gri",
+	"grt",
+}) do
+	pcall(vim.keymap.del, "n", key)
+end
+
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- Windows
@@ -15,6 +27,30 @@ vim.keymap.set("n", "<leader>wd", "<cmd>close<cr>", {
 
 vim.keymap.set("n", "<leader>wo", "<cmd>only<cr>", {
 	desc = "Close window",
+})
+
+vim.keymap.set("n", "<leader>w=", "<C-w>=", {
+	desc = "Equalize windows",
+})
+
+vim.keymap.set("n", "<leader>w=", "<C-w>=", {
+	desc = "Equalize windows",
+})
+
+vim.keymap.set("n", "<M-.>", "5<C-w>>", {
+	desc = "Increase width",
+})
+
+vim.keymap.set("n", "<M-,>", "5<C-w><", {
+	desc = "Decrease width",
+})
+
+vim.keymap.set("n", "<M-=>", "5<C-w>+", {
+	desc = "Increase height",
+})
+
+vim.keymap.set("n", "<M-->", "5<C-w>-", {
+	desc = "Decrease height",
 })
 
 -- Window navigation

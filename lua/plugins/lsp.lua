@@ -23,7 +23,7 @@ return {
 		},
 		opts = {
 			ensure_installed = {
-				"vtsls",
+				"typescript-language-server",
 				"tailwindcss-language-server",
 				"eslint-lsp",
 				"eslint_d",
@@ -51,7 +51,6 @@ return {
 		dependencies = {
 			"mason-org/mason.nvim",
 			{ "mason-org/mason-lspconfig.nvim", config = function() end },
-			"yioneko/nvim-vtsls",
 		},
 
 		opts_extend = { "servers.*.keys" },
@@ -89,24 +88,34 @@ return {
 
 					keys = {
 						{
-							"<leader>cd",
-							vim.lsp.buf.definition,
-							desc = "Definition",
+							"gd",
+							function()
+								local lsp = require("utils.lsp")
+								lsp.goto_definition()
+							end,
+							desc = "Go to Definition",
 						},
 						{
-							"<leader>cr",
-							vim.lsp.buf.references,
-							desc = "References",
+							"gD",
+							vim.lsp.buf.declaration,
+							desc = "Go to Declaration",
 						},
 						{
-							"<leader>ci",
+							"gi",
 							vim.lsp.buf.implementation,
-							desc = "Implementation",
+							desc = "Go to Imeplementation",
 						},
 						{
-							"<leader>ct",
-							vim.lsp.buf.type_definition,
-							desc = "Type Definition",
+							"gr",
+							function()
+								Snacks.picker.lsp_references()
+							end,
+							desc = "Go to Imeplementation",
+						},
+						{
+							"K",
+							vim.lsp.buf.hover,
+							desc = "Hover",
 						},
 						{
 							"<leader>ca",
@@ -114,7 +123,7 @@ return {
 							desc = "Code Action",
 						},
 						{
-							"<leader>cn",
+							"<leader>cr",
 							vim.lsp.buf.rename,
 							desc = "Rename",
 						},
@@ -134,30 +143,28 @@ return {
 					},
 				},
 
-				vtsls = {
+				ts_ls = {
 					settings = {
 						javascript = {
-							implicitProjectConfig = {
-								checkJs = true,
+							inlayHints = {
+								includeInlayEnumMemberValueHints = true,
+								includeInlayFunctionLikeReturnTypeHints = true,
+								includeInlayFunctionParameterTypeHints = true,
+								includeInlayParameterNameHints = "all",
+								includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+								includeInlayPropertyDeclarationTypeHints = true,
+								includeInlayVariableTypeHints = true,
 							},
 						},
 						typescript = {
 							inlayHints = {
-								parameterNames = { enabled = "all" },
-								parameterTypes = { enabled = true },
-								variableTypes = { enabled = true },
-								propertyDeclarationTypes = { enabled = true },
-								functionLikeReturnTypes = { enabled = true },
-								enumMemberValues = { enabled = true },
-							},
-						},
-						vtsls = {
-							enableMoveToFileCodeAction = true,
-							autoUseWorkspaceTsdk = true,
-							experimental = {
-								completion = {
-									enableServerSideFuzzyMatch = true,
-								},
+								includeInlayEnumMemberValueHints = true,
+								includeInlayFunctionLikeReturnTypeHints = true,
+								includeInlayFunctionParameterTypeHints = true,
+								includeInlayParameterNameHints = "all",
+								includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+								includeInlayPropertyDeclarationTypeHints = true,
+								includeInlayVariableTypeHints = true,
 							},
 						},
 					},
@@ -213,13 +220,6 @@ return {
 								})
 							end,
 							desc = "Fix all diagnostics",
-						},
-						{
-							"<leader>cV",
-							function()
-								require("vtsls").commands.select_ts_version(0)
-							end,
-							desc = "Select TS version",
 						},
 					},
 				},
@@ -342,16 +342,6 @@ return {
 						server_opts.capabilities or {}
 					)
 					require("lspconfig")[server_name].setup(server_opts)
-				end,
-				vtsls = function()
-					local server_opts = opts.servers.vtsls or {}
-					server_opts.capabilities = vim.tbl_deep_extend(
-						"force",
-						{},
-						opts.servers["*"].capabilities or {},
-						server_opts.capabilities or {}
-					)
-					require("vtsls").setup(server_opts)
 				end,
 			}
 

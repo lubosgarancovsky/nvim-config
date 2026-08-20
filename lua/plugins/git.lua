@@ -65,6 +65,14 @@ return {
 			},
 
 			{
+				"<leader>gB",
+				function()
+					Snacks.gitbrowse()
+				end,
+				desc = "Open in Git",
+			},
+
+			{
 				"<leader>gS",
 				function()
 					require("gitsigns").stage_buffer()
