@@ -44,35 +44,6 @@ return {
 	},
 
 	{
-		"catppuccin/nvim",
-		lazy = true,
-		name = "catppuccin",
-		opts = {
-			transparent_background = cfg.ui.transparent,
-			flavour = "latte",
-		},
-		config = function(_, opts)
-			require("catppuccin").setup(opts)
-		end,
-	},
-
-	{
-		"sainnhe/gruvbox-material",
-		lazy = true,
-		config = function()
-			vim.g.gruvbox_material_enable_italic = true
-			vim.g.gruvbox_material_background = "hard"
-			vim.g.gruvbox_material_transparent_background = cfg.ui.transparent and 2 or 0
-		end,
-	},
-
-	{
-		"rockyzhang24/arctic.nvim",
-		dependencies = { "rktjmp/lush.nvim" },
-		branch = "main",
-	},
-
-	{
 		"tiagovla/tokyodark.nvim",
 		opts = {
 			transparent_background = cfg.ui.transparent,
@@ -80,8 +51,36 @@ return {
 	},
 
 	{
-		"doums/darcula",
+		"miladggg/neonwave.nvim",
 		lazy = true,
+		config = function()
+			require("neonwave").setup({
+				intensity = "neon", -- 'soft' or 'neon'
+				background = "auto", -- 'light' or 'dark' to lock; 'auto' follows 'background'
+				transparent_background = cfg.ui.transparent,
+			})
+		end,
+	},
+
+	{
+		"rose-pine/neovim",
+		lazy = true,
+		name = "rose-pine",
+		config = function()
+			require("rose-pine").setup({
+				styles = {
+					transparency = cfg.ui.transparent,
+				},
+			})
+		end,
+	},
+
+	{
+		"scottmckendry/cyberdream.nvim",
+		lazy = true,
+		opts = {
+			transparent = cfg.ui.transparent,
+		},
 	},
 
 	-- Theme picker
@@ -92,13 +91,12 @@ return {
 		opts = {
 			themes = {
 				"cendre",
-				"gruvbox-material",
 				"tokyodark",
 				"onedark",
 				"everforest",
-				"catppuccin",
-				"arctic",
-				"darcula",
+				"neonwave",
+				"rose-pine",
+				"cyberdream",
 			},
 
 			livePreview = true,
