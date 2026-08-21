@@ -31,7 +31,7 @@ brew install gcc curl tree-sitter-cli lazygit
 
 Arch
 ```bash
-sudo packman -S gcc cup tree-sitter-cli lazygit
+sudo pacman -S gcc curl tree-sitter-cli lazygit
 ```
 
 (Optional)
@@ -46,7 +46,7 @@ brew install postgresql mongosh ollama
 
 Arch
 ```bash
-sudo packman -S postgresql
+sudo pacman -S postgresql
 
 yay -S mongosh
 
