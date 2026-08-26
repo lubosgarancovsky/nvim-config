@@ -23,15 +23,28 @@ yay -S shell-color-scripts
 - **curl**
 - **tree-sitter-cli**
 - **lazygit**
+- easy-conflict
 
 Mac OS
 ```bash
 brew install gcc curl tree-sitter-cli lazygit
+go install github.com/chojs23/ec/cmd/ec@latest
+
 ```
 
 Arch
 ```bash
 sudo packman -S gcc cup tree-sitter-cli lazygit
+go install github.com/chojs23/ec/cmd/ec@latest
+```
+
+Setup easy-conflict as default mergetool
+
+``` bash
+git config --global merge.tool ec
+git config --global mergetool.ec.cmd 'ec "$BASE" "$LOCAL" "$REMOTE" "$MERGED"'
+git config --global mergetool.ec.trustExitCode true
+
 ```
 
 (Optional)

@@ -127,4 +127,22 @@ return {
 
 		opts = {},
 	},
+
+	{
+		"chojs23/ec",
+		cmd = "Ec",
+		keys = {
+			{
+				"<leader>gc",
+				"<cmd>Ec<CR>",
+				desc = "Git Resolve Conflict",
+			},
+		},
+		config = function()
+			require("ec").setup({
+				float = true,
+				close_on_exit = true,
+			})
+		end,
+	},
 }
