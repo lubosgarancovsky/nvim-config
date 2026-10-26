@@ -90,14 +90,14 @@ return {
 				interactions = {
 					chat = {
 						adapter = "llamacpp",
+						tools = {
+							opts = {
+								default_tools = { "agent" },
+							},
+						},
 					},
 					inline = {
 						adapter = "llamacpp",
-					},
-				},
-				tools = {
-					opts = {
-						default_tools = { "agent" },
 					},
 				},
 				display = {

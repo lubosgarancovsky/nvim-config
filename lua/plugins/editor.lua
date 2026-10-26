@@ -209,13 +209,10 @@ return {
 		"stevearc/overseer.nvim",
 
 		opts = {
-			strategy = "toggleterm",
-
 			task_list = {
 				direction = "bottom",
 				min_height = 10,
 				max_height = 15,
-				default_detail = 1,
 			},
 
 			component_aliases = {

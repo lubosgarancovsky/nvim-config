@@ -8,15 +8,6 @@ return {
 	},
 
 	{
-		"mason-org/mason-lspconfig.nvim",
-		opts = {},
-		dependencies = {
-			"mason-org/mason.nvim",
-			"neovim/nvim-lspconfig",
-		},
-	},
-
-	{
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 		dependencies = {
 			"mason-org/mason.nvim",
@@ -50,10 +41,8 @@ return {
 
 		dependencies = {
 			"mason-org/mason.nvim",
-			{ "mason-org/mason-lspconfig.nvim", config = function() end },
+			"mason-org/mason-lspconfig.nvim",
 		},
-
-		opts_extend = { "servers.*.keys" },
 
 		opts = {
 			diagnostics = {
@@ -89,10 +78,7 @@ return {
 					keys = {
 						{
 							"gd",
-							function()
-								local lsp = require("utils.lsp")
-								lsp.goto_definition()
-							end,
+							vim.lsp.buf.definition,
 							desc = "Go to Definition",
 						},
 						{
@@ -103,14 +89,14 @@ return {
 						{
 							"gi",
 							vim.lsp.buf.implementation,
-							desc = "Go to Imeplementation",
+							desc = "Go to Implementation",
 						},
 						{
 							"gr",
 							function()
 								Snacks.picker.lsp_references()
 							end,
-							desc = "Go to Imeplementation",
+							desc = "Go to References",
 						},
 						{
 							"K",
@@ -337,22 +323,11 @@ return {
 		config = function(_, opts)
 			vim.diagnostic.config(opts.diagnostics)
 
-			local handlers = {
-				function(server_name)
-					local server_opts = opts.servers[server_name] or {}
-					server_opts.capabilities = vim.tbl_deep_extend(
-						"force",
-						{},
-						opts.servers["*"].capabilities or {},
-						server_opts.capabilities or {}
-					)
-					require("lspconfig")[server_name].setup(server_opts)
-				end,
-			}
-
-			require("mason-lspconfig").setup({
-				handlers = handlers,
-			})
+			for server_name, server_opts in pairs(opts.servers) do
+				local config = vim.deepcopy(server_opts)
+				config.keys = nil
+				vim.lsp.config(server_name, config)
+			end
 
 			vim.api.nvim_create_autocmd("LspAttach", {
 				callback = function(event)
@@ -389,6 +364,8 @@ return {
 					end
 				end,
 			})
+
+			require("mason-lspconfig").setup()
 		end,
 	},
 }

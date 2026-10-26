@@ -7,7 +7,12 @@ local default_sources = {
 	"buffer",
 }
 
-local providers = {}
+local providers = {
+	dadbod = {
+		name = "Dadbod",
+		module = "vim_dadbod_completion.blink",
+	},
+}
 
 if cfg.ai.enabled then
 	table.insert(default_sources, "minuet")
@@ -48,6 +53,11 @@ return {
 			sources = {
 				default = default_sources,
 				providers = providers,
+				per_filetype = {
+					sql = { "dadbod", "snippets", "buffer", "path" },
+					mysql = { "dadbod", "snippets", "buffer", "path" },
+					plsql = { "dadbod", "snippets", "buffer", "path" },
+				},
 			},
 
 			fuzzy = {
@@ -68,6 +78,7 @@ return {
 
 		config = function(_, opts)
 			require("luasnip").setup(opts)
+			require("luasnip.loaders.from_vscode").lazy_load()
 			require("snippets")
 		end,
 	},

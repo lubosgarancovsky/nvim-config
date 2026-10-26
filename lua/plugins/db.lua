@@ -27,8 +27,9 @@ return {
 			-- Where saved queries are stored
 			vim.g.db_ui_save_location = vim.fn.stdpath("data") .. "/db_ui"
 
-			-- Automatically execute queries when opening them
-			vim.g.db_ui_auto_execute_table_helpers = 1
+			-- Saving or opening a query must not execute it.
+			vim.g.db_ui_execute_on_save = 0
+			vim.g.db_ui_auto_execute_table_helpers = 0
 
 			-- Keep the DBUI sidebar open when opening a table/query
 			vim.g.db_ui_win_position = "left"
