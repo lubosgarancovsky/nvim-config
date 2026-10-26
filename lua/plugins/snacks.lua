@@ -70,6 +70,9 @@ return {
 							".env",
 							".env.*",
 							"*local*",
+							".storybook",
+							".nvmrc",
+							".gitignore",
 						},
 					},
 					files = {

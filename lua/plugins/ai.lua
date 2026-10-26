@@ -13,12 +13,22 @@ return {
 				provider_options = {
 					openai_fim_compatible = {
 						api_key = "TERM",
-						name = "Ollama",
-						end_point = "http://localhost:11434/v1/completions",
+						name = "Llama.cpp",
+						end_point = "http://192.168.1.3:9931/v1/completions",
 						model = cfg.ai.completion_model,
 						optional = {
 							max_tokens = 56,
 							top_p = 0.9,
+						},
+						template = {
+							prompt = function(context_before_cursor, context_after_cursor, _)
+								return "<|fim_prefix|>"
+									.. context_before_cursor
+									.. "<|fim_suffix|>"
+									.. context_after_cursor
+									.. "<|fim_middle|>"
+							end,
+							suffix = false,
 						},
 					},
 				},
@@ -61,14 +71,16 @@ return {
 			require("codecompanion").setup({
 				adapters = {
 					http = {
-						ollama = function()
-							return require("codecompanion.adapters").extend("ollama", {
+						llamacpp = function()
+							return require("codecompanion.adapters").extend("openai_compatible", {
+								formatted_name = "Llama.cpp",
+								env = {
+									url = "http://192.168.1.3:9931",
+									api_key = "TERM",
+								},
 								schema = {
 									model = {
 										default = cfg.ai.chat_model,
-									},
-									num_ctx = {
-										default = 8192,
 									},
 								},
 							})
@@ -77,10 +89,10 @@ return {
 				},
 				interactions = {
 					chat = {
-						adapter = "ollama",
+						adapter = "llamacpp",
 					},
 					inline = {
-						adapter = "ollama",
+						adapter = "llamacpp",
 					},
 				},
 				tools = {

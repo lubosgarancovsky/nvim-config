@@ -234,6 +234,11 @@ return {
 						"typescript",
 						"typescriptreact",
 					},
+					settings = {
+						tailwindCSS = {
+							classFunctions = { "cva", "cx" },
+						},
+					},
 				},
 
 				cssls = {
