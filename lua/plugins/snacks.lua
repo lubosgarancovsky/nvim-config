@@ -73,6 +73,10 @@ return {
 							".storybook",
 							".nvmrc",
 							".gitignore",
+							".gitkeep",
+							".pi",
+							"AGENTS*",
+							"CLAUDE*",
 						},
 					},
 					files = {
